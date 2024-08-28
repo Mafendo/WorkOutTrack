@@ -23,7 +23,6 @@ body {
 
 .cover-container {
   max-width: 42em;
-  
 }
 
 
@@ -48,4 +47,22 @@ body {
 .nav-masthead .active {
   color: #fff;
   border-bottom-color: #fff;
+}
+
+#Mainbg{
+  width: calc(100vw - 5rem); /* 100% of the viewport width minus 20rem */
+  height: calc(100vh - 5rem); /* 100% of the viewport height minus 15rem */
+  max-width: 40rem; /* Maximum width of 40rem */
+  max-height: 25rem; /* Maximum height of 25rem */
+
+}
+
+@media only screen and (max-width: 400px) {
+  .ScaleTxt{
+    font-size: 0.75rem;
+  }
+  .ScaleBtn{
+    font-size: 0.65rem;
+    
+  }
 }
