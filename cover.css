@@ -56,10 +56,35 @@ body {
   max-height: 25rem; /* Maximum height of 25rem */
 
 }
+#MainforumCard{
+  height: inherit;
+  width: inherit;
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  max-width: 40rem;
+  max-height: 23rem
+}
 
+.forumCards{
+  height: inherit;
+  width: inherit;
+background: rebeccapurple;
+  position:  absolute!important; 
+  max-width: 40rem;
+  max-height: 23rem;
+  top: 0;
+}
+.form-select{
+  width: max-content;
+  align-items: center;
+}
+
+.hide{
+  display: none;
+}
 @media only screen and (max-width: 400px) {
   .ScaleTxt{
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
   .ScaleBtn{
     font-size: 0.65rem;
