@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //validate when presseing done
         if (selectedValue && !isNaN(parseInt(selectedValue))) {
             if (validateExerciseName(selectedValue) && validateExerciseSets(selectedValue) && validateInputs()) {
-                console.log("yay")
+                //console.log("yay")
                 selectAllExerciseCardsAndHide(exerciseSelect.value)
                
                 captureExerciseData(exerciseSelect.value);
@@ -188,6 +188,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             else {
                 console.log("somthing went wrong");
+                if (!validateExerciseName(selectedValue)){
+                    alert("Please select the name of the exercise before proceeding.");
+                    
+                }
+                else if(!validateExerciseSets(selectedValue)){
+                    alert("Please specify the number of sets.");
+                }
+                else if(!validateInputs()){
+                    alert("Please input a valid number in Kg/Rep")
+                }
+
             }
         }
      

@@ -1,6 +1,10 @@
 var disableEvent = false;
 document.addEventListener('DOMContentLoaded', function () {
     // Get the select element
+
+
+
+
     const exerciseSelect = document.getElementById('exerciseSelect');
     const mainCard = document.getElementById("MainforumCard");
     //buttons
@@ -97,12 +101,67 @@ document.addEventListener('DOMContentLoaded', function () {
     function createExerciseDivs(numExercises) {
         // Get the Mainbg element
         const mainBg = document.getElementById('Mainbg');
+        // Takes the day
+        const nav = document.getElementById("navBar");
+        const day = nav.querySelector(".active").innerHTML.toString();
+        console.log(day);
 
-        // Clear any existing content in Mainbg
+        // Initialize variables for each day
+      
+        let exerciseName = ``;
 
+
+
+
+ 
 
         // Loop to create the specified number of divs
         for (let i = 1; i <= numExercises; i++) {
+                  // Determine the current day and set the appropriate variable to true
+                  if (day === "Monday") {
+                    exerciseName = `
+                        <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
+                            <option selected>Select the name of exercise</option>
+                            <option value="Barbell bench press">Barbell bench press</option>
+                            <option value="Dumbbell chest press">Dumbbell chest press</option>
+                            <option value="Incline dumbbell press">Incline dumbbell press</option>
+                            <option value="Cable crossover">Cable crossover</option>
+                            <option value="Tricep pushdown">Tricep pushdown</option>
+                            <option value="Tricep overhead pushdown">Tricep overhead pushdown</option>
+                            <option value="Chest fly machine">Chest fly machine</option>
+                        </select>`;
+                } else if (day === "Tuesday") {
+                    exerciseName = `
+                        <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
+                            <option selected>Select the name of exercise</option>
+                            <option value="Barbell rows">Barbell rows</option>
+                            <option value="Cable rows">Cable rows</option>
+                            <option value="Lat pulldowns">Lat pulldowns</option>
+                            <option value="Cable face pulls">Cable face pulls</option>
+                            <option value="Plate Loaded Single Arm Row">Plate Loaded Single Arm Row</option>
+                        </select>`;
+                } else if (day === "Wednesday") {
+                    exerciseName = `
+                        <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
+                            <option selected>Select the name of exercise</option>
+                            <option value="Dumbbell Shoulder Press">Dumbbell Shoulder Press</option>
+                            <option value="Cable Side lateral raise">Cable Side lateral raise</option>
+                            <option value="Rear delt">Rear delt</option>
+                            <option value="reverse pec deck">reverse pec deck</option>
+                            <option value="Super-rom reverse cable flye">Super-rom reverse cable flye</option>
+                        </select>`;
+                } else if (day === "Thursday") {
+                    exerciseName = `
+                        <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
+                            <option selected>Select the name of exercise</option>
+                            <option value="barbell squats">barbell squats</option>
+                            <option value="Leg curl machine">Leg curl machine</option>
+                            <option value="leg extension machine">leg extension machine</option>
+                            <option value="Calf Raises">Calf Raises</option>
+                        </select>`;
+                }
+          
+          
             // Create a new div
             const exerciseDiv = document.createElement('div');
 
@@ -114,15 +173,11 @@ document.addEventListener('DOMContentLoaded', function () {
             exerciseDiv.innerHTML = `<p class="m-3">Exercise ${i}</p>`;
             // Add content, including the select menu, to the div
             exerciseDiv.innerHTML = `
+           
              <p class="m-2">Exercise ${i}</p>
              <div class="d-flex flex-column align-items-center">
              
-                <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
-                <option selected>Select the name of exercise</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                </select>
+                   ${exerciseName}
 
             <select id="exerciseSets-${i}" class="form-select mb-2" aria-label="Select number of reps">
             <option selected>Select number of sets</option>
@@ -188,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                           <input type="text" class="form-control reps-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                             </div>
                             </div>
-
+                            
                 
              `;
             // Append the new div to Mainbg
