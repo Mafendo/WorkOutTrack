@@ -68,7 +68,7 @@ body {
 .forumCards{
   height: inherit;
   width: inherit;
-background: rebeccapurple;
+background: rgba(211, 211, 211, 0);
   position:  absolute!important; 
   max-width: 40rem;
   max-height: 23rem;
@@ -79,6 +79,22 @@ background: rebeccapurple;
   align-items: center;
 }
 
+
+
+
+.textarea{
+  width: 100%;
+ background: #2b2b2b;
+ color: whitesmoke;
+  padding: 5px 0 0 5px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  border: 2.5px solid black;
+  font-weight: bold;
+    max-height: 23rem;
+  
+}
 .hide{
   display: none;
 }

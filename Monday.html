@@ -16,6 +16,7 @@
     <link href="cover.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src = "Forum.js"></script>
+    <script src = "FoumValidation.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       .bd-placeholder-img {
@@ -155,9 +156,20 @@
   </header>
 
 
-<!-- main -->
-  <main class="position-relative" >
+<!-- main readonly -->
+  <main class="position-relative">
+    <!-- output area -->
+    <div class="form-floating hide" id="DataOutput">
+      <p class="text-secondary">
+          <abbr class="fw-bold">Note:</abbr> Feel free to copy the details below and paste them into your notepad.
+      </p>
+      <textarea class="textarea" id="exerciseDataOutput" style="height: 360px" readonly></textarea>
+      <button id="copyButton" class="btn btn-lg btn-light fw-bold border-white bg-white ScaleBtn mt-2">Copy Text</button>
+  </div>
+  
+     <!-- output area -->
    <div id="Mainbg" class="bg-gradient mx-auto">
+    
   <!-- Mainforum -->
   <div id="MainforumCard">
     <p class="lead p-2">How many exercises have you done?</p>
@@ -185,7 +197,7 @@
           </p>
 
           <p class="lead m-2 position-absolute bottom-0 end-0">
-            <a class="btn btn-lg btn-light fw-bold border-white bg-white disabled ScaleBtn">Done</a>
+            <a  id="doneBtn" class="btn btn-lg btn-light fw-bold border-white bg-white disabled ScaleBtn">Done</a>
           </p>
     </div>
   
