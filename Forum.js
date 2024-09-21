@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option value="Cable face pulls">Cable face pulls</option>
                             <option value="Plate Loaded Single Arm Row">Plate Loaded Single Arm Row</option>
                         </select>`;
-                } else if (day === "Wednesday") {
+                } else if (day === "Wednesday") { 
                     exerciseName = `
                         <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
                             <option selected>Select the name of exercise</option>
@@ -149,6 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option value="Rear delt">Rear delt</option>
                             <option value="reverse pec deck">reverse pec deck</option>
                             <option value="Super-rom reverse cable flye">Super-rom reverse cable flye</option>
+                            <option value="Ez-bar curl">Ez-bar curl</option>
+                             <option value="Barbell curl">Barbell curl</option>
                         </select>`;
                 } else if (day === "Thursday") {
                     exerciseName = `
