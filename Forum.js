@@ -1,125 +1,109 @@
 var disableEvent = false;
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     // Get the select element
 
-
-
-
-    const exerciseSelect = document.getElementById('exerciseSelect');
+    const exerciseSelect = document.getElementById("exerciseSelect");
     const mainCard = document.getElementById("MainforumCard");
     //buttons
     const nextButton = document.getElementById("nextBtn");
-    const backButton = document.getElementById('backBtn');
+    const backButton = document.getElementById("backBtn");
     const doneButton = document.getElementById("doneBtn");
     let currentCard = 0;
-
 
     var selectedValue = null;
     let flag = false;
 
-
     // Add an event listener to the select element
-    exerciseSelect.addEventListener('change', function () {
+    exerciseSelect.addEventListener("change", function () {
         // Get the selected value
         selectedValue = exerciseSelect.value;
         if (selectedValue && !isNaN(parseInt(selectedValue))) {
             flag = true;
         }
-
-
     });
 
     // For the button
 
-    nextButton.addEventListener('click', function () {
-        if (flag == true && disableEvent == false && selectedValue && !isNaN(parseInt(selectedValue))) {
+    nextButton.addEventListener("click", function () {
+        if (
+            flag == true &&
+            disableEvent == false &&
+            selectedValue &&
+            !isNaN(parseInt(selectedValue))
+        ) {
             mainCard.classList.add("hide");
-            console.log('Selected number of exercises:', selectedValue);
+            console.log("Selected number of exercises:", selectedValue);
 
             // Set disableEvent to true to prevent further clicks
-
 
             // Call your function to create divs here
             createExerciseDivs(selectedValue);
             disableEvent = true;
         } else {
             // console.log('No value selected or already submitted.');
-
         }
     });
-    nextButton.addEventListener('click', function () {
-
+    nextButton.addEventListener("click", function () {
         if (disableEvent == true) {
             //-----
             if (currentCard < selectedValue) {
-
-
-
-
                 if (currentCard != 0) {
-                    document.getElementById(`exercise-${currentCard}`).classList.add('hide');
+                    document
+                        .getElementById(`exercise-${currentCard}`)
+                        .classList.add("hide");
+                } else {
                 }
-                else {
-
-                }
-
 
                 currentCard++;
-                document.getElementById(`exercise-${currentCard}`).classList.remove('hide');
-
+                document
+                    .getElementById(`exercise-${currentCard}`)
+                    .classList.remove("hide");
 
                 if (currentCard == selectedValue) {
-                    nextButton.classList.add('disabled');
-                    doneButton.classList.remove('disabled');
-
+                    nextButton.classList.add("disabled");
+                    doneButton.classList.remove("disabled");
                 }
                 if (currentCard > 1) {
-                    backButton.classList.remove('disabled');
-
+                    backButton.classList.remove("disabled");
                 }
             }
             //-----
         }
-
-
     });
 
-    backButton.addEventListener('click', function () {
+    backButton.addEventListener("click", function () {
         if (currentCard > 1) {
-            document.getElementById(`exercise-${currentCard}`).classList.add('hide');
+            document.getElementById(`exercise-${currentCard}`).classList.add("hide");
             currentCard--;
-            document.getElementById(`exercise-${currentCard}`).classList.remove('hide');
+            document
+                .getElementById(`exercise-${currentCard}`)
+                .classList.remove("hide");
             if (currentCard === 1) {
-                backButton.classList.add('disabled');
+                backButton.classList.add("disabled");
             }
             if (currentCard < selectedValue) {
-                nextButton.classList.remove('disabled');
+                nextButton.classList.remove("disabled");
             }
         }
     });
     // Function to create exercise divs inside Mainbg
     function createExerciseDivs(numExercises) {
         // Get the Mainbg element
-        const mainBg = document.getElementById('Mainbg');
+        const mainBg = document.getElementById("Mainbg");
         // Takes the day
         const nav = document.getElementById("navBar");
         const day = nav.querySelector(".active").innerHTML.toString();
         console.log(day);
 
         // Initialize variables for each day
-      
+
         let exerciseName = ``;
-
-
-
-
- 
 
         // Loop to create the specified number of divs
         for (let i = 1; i <= numExercises; i++) {
-                  // Determine the current day and set the appropriate variable to true
-                  if (day === "Monday") {
-                    exerciseName = `
+            // Determine the current day and set the appropriate variable to true
+            if (day === "Monday") {
+                exerciseName = `
                         <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
                             <option selected>Select the name of exercise</option>
                             <option value="Barbell bench press">Barbell bench press</option>
@@ -130,8 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option value="Tricep overhead pushdown">Tricep overhead pushdown</option>
                             <option value="Chest fly machine">Chest fly machine</option>
                         </select>`;
-                } else if (day === "Tuesday") {
-                    exerciseName = `
+            } else if (day === "Tuesday") {
+                exerciseName = `
                         <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
                             <option selected>Select the name of exercise</option>
                             <option value="Barbell rows">Barbell rows</option>
@@ -140,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option value="Cable face pulls">Cable face pulls</option>
                             <option value="Plate Loaded Single Arm Row">Plate Loaded Single Arm Row</option>
                         </select>`;
-                } else if (day === "Wednesday") { 
-                    exerciseName = `
+            } else if (day === "Wednesday") {
+                exerciseName = `
                         <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
                             <option selected>Select the name of exercise</option>
                             <option value="Dumbbell Shoulder Press">Dumbbell Shoulder Press</option>
@@ -152,8 +136,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option value="Ez-bar curl">Ez-bar curl</option>
                              <option value="Barbell curl">Barbell curl</option>
                         </select>`;
-                } else if (day === "Thursday") {
-                    exerciseName = `
+            } else if (day === "Thursday") {
+                exerciseName = `
                         <select id="exerciseName-${i}" class="form-select mb-2" aria-label="Default select example">
                             <option selected>Select the name of exercise</option>
                             <option value="barbell squats">barbell squats</option>
@@ -161,15 +145,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option value="leg extension machine">leg extension machine</option>
                             <option value="Calf Raises">Calf Raises</option>
                         </select>`;
-                }
-          
-          
+            }
+
             // Create a new div
-            const exerciseDiv = document.createElement('div');
+            const exerciseDiv = document.createElement("div");
 
             // Set an ID or class if necessary
             exerciseDiv.id = `exercise-${i}`;
-            exerciseDiv.classList.add('forumCards', 'hide');
+            exerciseDiv.classList.add("forumCards", "hide");
 
             // Add content or other elements to the div
             exerciseDiv.innerHTML = `<p class="m-3">Exercise ${i}</p>`;
@@ -251,26 +234,21 @@ document.addEventListener('DOMContentLoaded', function () {
             // Append the new div to Mainbg
             mainBg.appendChild(exerciseDiv);
             if (numExercises > 0) {
-                document.getElementById('exercise-1').classList.remove('hide');
+                document.getElementById("exercise-1").classList.remove("hide");
             }
 
-
-            const exerciseSetsSelect = document.getElementById(`exerciseSets-${i}`)
+            const exerciseSetsSelect = document.getElementById(`exerciseSets-${i}`);
 
             exerciseSetsSelect.addEventListener("change", function () {
                 const numSets = parseInt(exerciseSetsSelect.value, 10);
 
-
-                const inputGroups = exerciseDiv.querySelectorAll('.numForum');
+                const inputGroups = exerciseDiv.querySelectorAll(".numForum");
                 // Hide all input groups first
-                inputGroups.forEach(group => group.classList.add('hide'));
+                inputGroups.forEach((group) => group.classList.add("hide"));
                 for (let j = 0; j < numSets * 2; j++) {
-                    inputGroups[j].classList.remove('hide');
+                    inputGroups[j].classList.remove("hide");
                 }
             });
         }
     }
-
-
-
 });
