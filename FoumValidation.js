@@ -75,56 +75,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function captureExerciseData(numExercises) {
-        // Initialize or clear the array that will store all exercises data
         exercisesData = [];
+        const targetReps = 10; // Example target reps for all sets
     
-        // Loop through each exercise, assuming exercises are numbered from 1 to numExercises
         for (let i = 1; i <= numExercises; i++) {
-            // Initialize an object to store the current exercise's data
             let exerciseData = {};
-    
-            // Capture the selected exercise name
             const exerciseNameSelect = document.getElementById(`exerciseName-${i}`);
             exerciseData.name = exerciseNameSelect.value;
-    
-            // Capture the number of sets for this exercise
             const exerciseSetsSelect = document.getElementById(`exerciseSets-${i}`);
             exerciseData.sets = parseInt(exerciseSetsSelect.value, 10);
     
-            // Initialize an array to store data for each set (kg and reps)
             let setsData = [];
-    
-            // Select all input groups for this exercise that are not hidden
             const inputGroups = document.querySelectorAll(`#exercise-${i} .numForum:not(.hide)`);
     
-            // Iterate over the input groups in pairs (kg and reps)
             for (let j = 0; j < inputGroups.length; j += 2) {
-                // Initialize an object to store data for the current set
                 let setData = {};
-    
-                // Capture the kg input value
                 const kgInput = inputGroups[j].querySelector('.kg-input');
-                if (kgInput) {
-                    setData.kg = kgInput.value;
+                const repsInput = inputGroups[j + 1]?.querySelector('.reps-input');
+    
+                if (kgInput && repsInput) {
+                    const currentWeight = parseFloat(kgInput.value);
+                    const reps = parseInt(repsInput.value, 10);
+    
+                    setData.kg = currentWeight;
+                    setData.reps = reps;
+    
+                    // Calculate the next goal
+                    const nextGoal = suggestNextWorkout(currentWeight, reps, targetReps);
+                    setData.nextGoal = nextGoal;
                 }
     
-                // Capture the reps input value
-                const repsInput = inputGroups[j + 1]?.querySelector('.reps-input'); // Safe navigation to avoid errors
-                if (repsInput) {
-                    setData.reps = repsInput.value;
-                }
-    
-                // Add the set data (kg and reps) to the setsData array
                 setsData.push(setData);
             }
     
-            // Assign the array of sets data to the exerciseData object
             exerciseData.setsData = setsData;
-    
-            // Add the exerciseData object to the exercisesData array
             exercisesData.push(exerciseData);
         }
     }
+    
     
     
     function formatExerciseDataForDisplay(exercisesData) {
@@ -136,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
             exercise.setsData.forEach((set, setIndex) => {
                 formattedData += `  Set ${setIndex + 1}: ${set.kg} kg, ${set.reps} reps\n`;
+                if (set.nextGoal) {
+                    formattedData += `    Next Goal: ${set.nextGoal.suggestedWeight} kg, ${set.nextGoal.suggestedReps} reps\n`;
+                }
             });
     
             formattedData += '\n'; // Add a blank line between exercises
@@ -143,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
         return formattedData;
     }
+    
     function displayExerciseData(formattedData) {
         const outputElement = document.getElementById('exerciseDataOutput');
         outputElement.value = formattedData;
@@ -219,7 +211,26 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Workout details copied to clipboard!');
     });
     
-
+    function suggestNextWorkout(currentWeight, reps, targetReps) {
+        const weightIncrementFactor = 1.05; // 5% weight increment
+        let suggestedWeight = currentWeight;
+        let suggestedReps = reps;
+    
+        if (reps >= targetReps) {
+            // If the user reaches or exceeds the target reps, increase the weight
+            suggestedWeight = Math.round((currentWeight * weightIncrementFactor) * 10) / 10; // Round to 1 decimal
+            suggestedReps = targetReps; // Maintain target reps
+        } else {
+            // Otherwise, increase reps towards the target
+            suggestedReps = Math.min(reps + 1, targetReps);
+        }
+    
+        return {
+            suggestedWeight: suggestedWeight,
+            suggestedReps: suggestedReps
+        };
+    }
+    
 
 });
 
