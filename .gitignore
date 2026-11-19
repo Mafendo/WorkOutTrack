@@ -1,0 +1,9 @@
+# Hemliga nycklar & databassträngar
+.env
+
+# Mavens byggfiler (behövs inte på GitHub)
+target/
+
+# VS Code- och OS-filer
+.vscode/
+.DS_Store
