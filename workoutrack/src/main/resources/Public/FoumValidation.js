@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectAllExerciseCardsAndHide(exerciseSelect.value);
 
         captureExerciseData(exerciseSelect.value);
-        console.log(exercisesData);
+        console.log(buildWorkoutDtoFromForm(exercisesData));
 
         const outputElement = document.getElementById("DataOutput");
         outputElement.classList.remove("hide");
@@ -224,8 +224,29 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  function createWorkoutDtoJson(exercisesData, notes = "") {
-    exercisesData
+  function buildWorkoutDtoFromForm(exercisesData, typeId, notes = "") {
+    const sets = [];
+    let setCounter = 1;
+
+    for (const exercise of exercisesData) {
+      const exerciseId = Number(exercise.id ?? exercise.name);
+
+      for (const set of exercise.setsData ?? []) {
+        sets.push(
+          new WorkoutSetDto({
+            exerciseId,
+            setNumber: setCounter++,
+            weight: set.kg,
+            reps: set.reps,
+          }),
+        );
+      }
+    }
+
+    return new CreateWorkoutDto({
+      typeId,
+      notes,
+      sets,
+    });
   }
-  
 });
