@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.workouttrack.Dao.Abstract.Exeption.DaoException;
+import com.workouttrack.Dao.Exeption.DaoException;
 import com.workouttrack.Db.DbConnection;
 
 public abstract class BaseDao<T, ID> implements CRUD<T, ID> {

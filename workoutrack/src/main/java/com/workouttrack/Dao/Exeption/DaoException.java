@@ -1,4 +1,4 @@
-package com.workouttrack.Dao.Abstract.Exeption;
+package com.workouttrack.Dao.Exeption;
 
 public class DaoException extends RuntimeException {
 
