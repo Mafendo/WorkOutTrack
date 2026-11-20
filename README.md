@@ -1,4 +1,4 @@
-[Link for the website: mafendo.github.io/WorkOutTrack](https://mafendo.github.io/WorkOutTrack/)
+[Link for the website: mafendo.github.io/WorkOutTrack/workoutrack/src/main/resources/Public/Html/index.html](https://mafendo.github.io/WorkOutTrack/workoutrack/src/main/resources/Public/Html/index.html)
 ## Databasstruktur
 ![Database Schema](Docs/database-schema.svg)
 
